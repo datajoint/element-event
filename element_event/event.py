@@ -99,7 +99,7 @@ class BehaviorRecording(dj.Manual):
     class File(dj.Part):
         definition = """
         -> master
-        filepath              : varchar(64)
+        filepath              : varchar(300)
         """
 
 

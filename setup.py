@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from os import path
 
-pkg_name = next(p for p in find_packages() if '.' not in p)
+pkg_name = "element_event"
 here = path.abspath(path.dirname(__file__))
 
 with open(path.join(here, 'README.md'), 'r') as f:

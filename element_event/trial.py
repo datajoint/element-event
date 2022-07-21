@@ -174,7 +174,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
             & f"event_start_time BETWEEN {trial_start} AND {trial_stop}"
         )
         if alignment_event_time:
-            # if there are multiple of such alignment event, pick the last one in the trial
+            # if  multiple alignment events, pick the last one in the trial
             alignment_event_time = alignment_event_time.fetch(
                 "event_start_time", order_by="event_start_time DESC", limit=1
             )[0]
@@ -191,7 +191,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
             & f"event_start_time < {alignment_event_time}"
         )
         if alignment_start_time:
-            # if there are multiple of such start event, pick the most immediate one prior to the alignment event
+            # if multiple start events, pick most immediate prior alignment event
             alignment_start_time = alignment_start_time.fetch(
                 "event_start_time", order_by="event_start_time DESC", limit=1
             )[0]
@@ -206,7 +206,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
             & f"event_start_time > {alignment_event_time}"
         )
         if alignment_end_time:
-            # if there are multiple of such start event, pick the most immediate one following the alignment event
+            # if multiple of such start event, pick most immediate after alignment event
             alignment_end_time = alignment_end_time.fetch(
                 "event_start_time", order_by="event_start_time", limit=1
             )[0]

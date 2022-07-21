@@ -107,9 +107,6 @@ class BehaviorRecording(dj.Manual):
         -> master
         filepath              : varchar(64)
         """
-    
-    def make(self, key):
-        raise NotImplementedError("For `insert`, use `allow_direct_insert=True`")
 
 
 @schema

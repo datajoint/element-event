@@ -116,7 +116,6 @@ dj_local_con*.json
 
 # docker
 .env
-docker-compose.y*ml
 
 # vscode
 .vscode/settings.json

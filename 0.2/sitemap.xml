@@ -2,47 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/changelog/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/citation/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/concepts/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/tutorials/</loc>
-         <lastmod>2023-04-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>None</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/api/element_event/event/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/api/element_event/trial/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-event/0.2/api/element_event/version/</loc>
-         <lastmod>2023-04-06</lastmod>
+         <lastmod>2023-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -128,12 +128,12 @@ class BehaviorRecording(dj.Manual):
 
         Attributes:
             BehaviorRecording (foreign key): Behavior recording primary key.
-            filepath ( varchar(64) ): file path of video, relative to root data dir.
+            filepath ( varchar(256) ): file path of video, relative to root data dir.
         """
 
         definition = """
         -> master
-        filepath              : varchar(64)
+        filepath              : varchar(256)
         """
 
 

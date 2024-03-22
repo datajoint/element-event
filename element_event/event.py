@@ -93,12 +93,12 @@ class EventType(dj.Lookup):
     """Set of unique events present within a recording session
 
     Attributes:
-        event_type ( varchar(16) ): Unique event type.
+        event_type ( varchar(32) ): Unique event type.
         event_type_description ( varchar(256) ): Event type description.
     """
 
     definition = """
-    event_type                : varchar(16)
+    event_type                : varchar(32)
     ---
     event_type_description='' : varchar(256)
     """

@@ -2,6 +2,10 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
+## [0.2.5] - 2024-10-25
+
++ Update - `trial_type` to varchar(24) in `TrialType` table
+
 ## [0.2.4] - 2024-08-23
 
 + Update - EventType to varchar(32)
@@ -48,6 +52,8 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - AlignmentEvent design to capture windows relative to an event
 + Add - Black formatting into code base
 
+[0.2.5]: https://github.com/datajoint/element-event/releases/tag/0.2.5
+[0.2.4]: https://github.com/datajoint/element-event/releases/tag/0.2.4
 [0.2.3]: https://github.com/datajoint/element-event/releases/tag/0.2.3
 [0.2.2]: https://github.com/datajoint/element-event/releases/tag/0.2.2
 [0.2.1]: https://github.com/datajoint/element-event/releases/tag/0.2.1

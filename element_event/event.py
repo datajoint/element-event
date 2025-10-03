@@ -128,12 +128,12 @@ class BehaviorRecording(dj.Manual):
 
         Attributes:
             BehaviorRecording (foreign key): Behavior recording primary key.
-            filepath ( varchar(64) ): file path of video, relative to root data dir.
+            filepath ( varchar(256) ): file path of video, relative to root data dir.
         """
 
         definition = """
         -> master
-        filepath              : varchar(64)
+        filepath              : varchar(256)
         """
 
 
@@ -146,14 +146,14 @@ class Event(dj.Imported):
     Attributes:
         BehaviorRecording (foreign key): Behavior recording primary key.
         EventType (foreign key): EventType primary key.
-        event_start_time (decimal(10, 4)): Time of event onset in seconds, WRT recording start.
+        event_start_time (decimal): Time of event onset in seconds, WRT recording start.
         event_end_time (float): Optional. Seconds WRT recording start.
     """
 
     definition = """
     -> BehaviorRecording
     -> EventType
-    event_start_time          : decimal(10, 4)  # (second) relative to recording start
+    event_start_time          : decimal(10, 6)  # (second) relative to recording start
     ---
     event_end_time=null       : float  # (second) relative to recording start
     """
@@ -211,3 +211,20 @@ class AlignmentEvent(dj.Manual):
     -> EventType.proj(end_event_type='event_type')   # event after alignment_event_type
     end_time_shift: float                            # (s) WRT end_event_type
     """
+
+
+@schema
+class BehaviorTimeSeries(dj.Imported):
+    definition = """
+    -> BehaviorRecording
+    timeseries_name             : varchar(32)  # e.g. joystick, lick_port
+    ---
+    sample_rate=null            : float  # (Hz)     # sampling rate of the acquired data
+    behavior_timeseries         : longblob  # array of device's acquired data
+    behavior_timestamps=null    : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording
+    timeseries_description=''   : varchar(1000)  # detailed description about the timeseries
+    """
+
+    def make(self, key):
+        """Populate based on unique entries in BehaviorRecording."""
+        # Write a make function to automatically ingest your timeseries data.

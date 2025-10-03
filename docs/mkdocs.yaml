@@ -1,7 +1,7 @@
 # ---------------------- PROJECT SPECIFIC ---------------------------
 
 site_name: DataJoint Documentation
-site_url: http://localhost/docs/elements/element-event
+site_url: https://docs.datajoint.com/elements/element-event/
 repo_url: https://github.com/datajoint/element-event
 repo_name: datajoint/element-event
 nav:

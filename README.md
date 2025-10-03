@@ -8,9 +8,9 @@
 
 + `element-event` can be flexibly attached to any DataJoint workflow.
 
-+ See the [Element Event documentation](https://elements.datajoint.org/description/event/) for the background information and development timeline.
++ See the [Element Event documentation](https://docs.datajoint.com/elements/element-event/) for the background information and development timeline.
 
-+ For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
++ For more information on the DataJoint Elements project, please visit <https://docs.datajoint.com/elements/>.  This work is supported by the National Institutes of Health.
 
 ## Element architecture
 

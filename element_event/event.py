@@ -93,12 +93,12 @@ class EventType(dj.Lookup):
     """Set of unique events present within a recording session
 
     Attributes:
-        event_type ( varchar(16) ): Unique event type.
+        event_type ( varchar(32) ): Unique event type.
         event_type_description ( varchar(256) ): Event type description.
     """
 
     definition = """
-    event_type                : varchar(16)
+    event_type                : varchar(32)
     ---
     event_type_description='' : varchar(256)
     """
@@ -157,6 +157,24 @@ class Event(dj.Imported):
     ---
     event_end_time=null       : float  # (second) relative to recording start
     """
+
+    class Attribute(dj.Part):
+        """Additional event attributes to fully describe an event
+
+        Attributes:
+            Event (foreign key): Event table primary key.
+            attribute_name ( varchar(32) ): Name of trial attribute
+            attribute_value ( varchar(2000) ): Optional. Trial attribute value
+            attribute_blob (longblob): Optional. Trial attribute numerical data
+        """
+
+        definition = """  # Additional event attributes to fully describe an event
+        -> master
+        attribute_name  : varchar(32)
+        ---
+        attribute_value='': varchar(2000)
+        attribute_blob=null: longblob
+        """
 
     def make(self, key):
         """Populate based on unique entries in BehaviorRecording and EventType."""

@@ -90,7 +90,7 @@ Event connects to upstream Element Session.
 
 ![element-event diagram](https://raw.githubusercontent.com/datajoint/element-event/main/images/trial_event_diagram.svg)
 
-### `subject` schema ([API docs](https://datajoint.com/docs/elements/element-animal/api/element_animal/subject))
+### `subject` schema ([API docs](https://docs.datajoint.com/elements/element-animal/latest/api/element_animal/subject/))
 
 Although not required, most choose to connect the `Session` table to a `Subject` table.
 
@@ -98,7 +98,7 @@ Although not required, most choose to connect the `Session` table to a `Subject`
 |   ---   |     ---                                    |
 | Subject | Basic information of the research subject. |
 
-### `session` schema ([API docs](https://datajoint.com/docs/elements/element-session/api/element_session/session_with_datetime))
+### `session` schema ([API docs](https://docs.datajoint.com/elements/element-session/latest/api/element_session/session_with_datetime/))
 
 |  Table  | Description                             |
 |   ---   |    ---                                  |

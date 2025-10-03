@@ -120,12 +120,12 @@ class TrialType(dj.Lookup):
     """Set of unique trial types present within a recording session
 
     Attributes:
-        trial_type ( varchar(16) ): Name of trial type
+        trial_type ( varchar(24) ): Name of trial type
         trial_type_description ( varchar(256) ): Optional. Long Description.
     """
 
     definition = """
-    trial_type                : varchar(16)
+    trial_type                : varchar(24)
     ---
     trial_type_description='' : varchar(256)
     """

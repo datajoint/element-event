@@ -6,7 +6,7 @@ import importlib
 from . import event
 
 
-schema = dj.schema()
+schema = dj.Schema()
 
 _linking_module = None
 

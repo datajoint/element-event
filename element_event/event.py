@@ -4,7 +4,7 @@ import datajoint as dj
 import inspect
 import importlib
 
-schema = dj.schema()
+schema = dj.Schema()
 
 _linking_module = None
 

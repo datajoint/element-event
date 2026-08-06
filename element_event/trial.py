@@ -107,7 +107,7 @@ class Block(dj.Imported):
         attribute_name    : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):
@@ -167,7 +167,7 @@ class Trial(dj.Imported):
         attribute_name  : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):

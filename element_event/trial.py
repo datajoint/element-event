@@ -6,7 +6,7 @@ import importlib
 from . import event
 
 
-schema = dj.schema()
+schema = dj.Schema()
 
 _linking_module = None
 
@@ -86,10 +86,10 @@ class Block(dj.Imported):
 
     definition = """ # Experimental blocks
     -> event.BehaviorRecording
-    block_id               : smallint # block number (1-based indexing)
+    block_id               : int16 # block number (1-based indexing)
     ---
-    block_start_time       : float     # (s) relative to recording start
-    block_stop_time        : float     # (s) relative to recording stop
+    block_start_time       : float32     # (s) relative to recording start
+    block_stop_time        : float32     # (s) relative to recording stop
     """
 
     class Attribute(dj.Part):
@@ -107,7 +107,7 @@ class Block(dj.Imported):
         attribute_name    : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):
@@ -145,11 +145,11 @@ class Trial(dj.Imported):
 
     definition = """  # Experimental trials
     -> event.BehaviorRecording
-    trial_id            : smallint # trial number (1-based indexing)
+    trial_id            : int16 # trial number (1-based indexing)
     ---
     -> [nullable] TrialType
-    trial_start_time    : float  # (second) relative to recording start
-    trial_stop_time     : float  # (second) relative to recording stop
+    trial_start_time    : float32  # (second) relative to recording start
+    trial_stop_time     : float32  # (second) relative to recording stop
     """
 
     class Attribute(dj.Part):
@@ -167,7 +167,7 @@ class Trial(dj.Imported):
         attribute_name  : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):

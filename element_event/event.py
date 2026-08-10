@@ -4,7 +4,7 @@ import datajoint as dj
 import inspect
 import importlib
 
-schema = dj.schema()
+schema = dj.Schema()
 
 _linking_module = None
 
@@ -119,7 +119,7 @@ class BehaviorRecording(dj.Manual):
     -> Session
     ---
     recording_start_time=null : datetime
-    recording_duration=null   : float
+    recording_duration=null   : float32
     recording_notes=''     : varchar(256)
     """
 
@@ -155,7 +155,7 @@ class Event(dj.Imported):
     -> EventType
     event_start_time          : decimal(10, 4)  # (second) relative to recording start
     ---
-    event_end_time=null       : float  # (second) relative to recording start
+    event_end_time=null       : float32  # (second) relative to recording start
     """
 
     class Attribute(dj.Part):
@@ -173,7 +173,7 @@ class Event(dj.Imported):
         attribute_name  : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):
@@ -205,9 +205,9 @@ class AlignmentEvent(dj.Manual):
     ---
     alignment_description='': varchar(1000)  
     -> EventType.proj(alignment_event_type='event_type') # event type to align to
-    alignment_time_shift: float                      # (s) WRT alignment_event_type
+    alignment_time_shift: float32                      # (s) WRT alignment_event_type
     -> EventType.proj(start_event_type='event_type') # event before alignment_event_type
-    start_time_shift: float                          # (s) WRT start_event_type
+    start_time_shift: float32                          # (s) WRT start_event_type
     -> EventType.proj(end_event_type='event_type')   # event after alignment_event_type
-    end_time_shift: float                            # (s) WRT end_event_type
+    end_time_shift: float32                            # (s) WRT end_event_type
     """

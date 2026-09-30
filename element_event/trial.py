@@ -6,7 +6,7 @@ import importlib
 from . import event
 
 
-schema = dj.schema()
+schema = dj.Schema()
 
 _linking_module = None
 
@@ -86,10 +86,10 @@ class Block(dj.Imported):
 
     definition = """ # Experimental blocks
     -> event.BehaviorRecording
-    block_id               : smallint # block number (1-based indexing)
+    block_id               : int16 # block number (1-based indexing)
     ---
-    block_start_time       : float     # (s) relative to recording start
-    block_stop_time        : float     # (s) relative to recording stop
+    block_start_time       : float32     # (s) relative to recording start
+    block_stop_time        : float32     # (s) relative to recording stop
     """
 
     class Attribute(dj.Part):
@@ -107,7 +107,7 @@ class Block(dj.Imported):
         attribute_name    : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):
@@ -145,11 +145,11 @@ class Trial(dj.Imported):
 
     definition = """  # Experimental trials
     -> event.BehaviorRecording
-    trial_id            : smallint # trial number (1-based indexing)
+    trial_id            : int16 # trial number (1-based indexing)
     ---
     -> [nullable] TrialType
-    trial_start_time    : float  # (second) relative to recording start
-    trial_stop_time     : float  # (second) relative to recording stop
+    trial_start_time    : float32  # (second) relative to recording start
+    trial_stop_time     : float32  # (second) relative to recording stop
     """
 
     class Attribute(dj.Part):
@@ -167,7 +167,7 @@ class Trial(dj.Imported):
         attribute_name  : varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
     def make(self, key):
@@ -239,8 +239,10 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
     import pandas as pd
 
     session_key = (_linking_module.Session & trial_restriction).fetch1("KEY")
-    trial_keys, trial_starts, trial_ends = (Trial ^ trial_restriction).fetch(
-        "KEY", "trial_start_time", "trial_stop_time", order_by="trial_id"
+    trial_keys, trial_starts, trial_ends = Trial.restrict(
+        trial_restriction, semantic_check=False
+    ).to_arrays(
+        "trial_start_time", "trial_stop_time", include_key=True, order_by="trial_id"
     )
     alignment_spec = (event.AlignmentEvent & alignment_event_key).fetch1()
 
@@ -254,7 +256,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
         )
         if alignment_event_time:
             # if  multiple alignment events, pick the last one in the trial
-            alignment_event_time = alignment_event_time.fetch(
+            alignment_event_time = alignment_event_time.to_arrays(
                 "event_start_time", order_by="event_start_time DESC", limit=1
             )[0]
         else:
@@ -271,7 +273,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
         )
         if alignment_start_time:
             # if multiple start events, pick most immediate prior alignment event
-            alignment_start_time = alignment_start_time.fetch(
+            alignment_start_time = alignment_start_time.to_arrays(
                 "event_start_time", order_by="event_start_time DESC", limit=1
             )[0]
             alignment_start_time = max(alignment_start_time, trial_start)
@@ -286,7 +288,7 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
         )
         if alignment_end_time:
             # if multiple of such start event, pick most immediate after alignment event
-            alignment_end_time = alignment_end_time.fetch(
+            alignment_end_time = alignment_end_time.to_arrays(
                 "event_start_time", order_by="event_start_time", limit=1
             )[0]
             alignment_end_time = min(alignment_end_time, trial_stop)
